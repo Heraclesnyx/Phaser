@@ -27,7 +27,7 @@ function preload ()
 {
 	this.load.image('sky', 'images/paysage.png');
 	this.load.image('sol', 'images/sol.png');
-	this.load.image('platforme', 'images/plateforme.png');
+	this.load.image('platforme', 'images/plateform.png');
 }
 
 var platforms;
@@ -38,9 +38,11 @@ function create ()
 
 	/*Duplique l'image sol grace a tileSprite(Longueur/2 canvas, déplacement en Y, width canvas en X si < 800 image + petite, déplacement en Y)*/
 	this.add.tileSprite(400,600,800,150, 'sol');
+	/*Duplique l'image sol grace a tileSprite(déplacement en X, déplacement en Y,  longueur image réel, hauteur image réel)*/
+	this.add.tileSprite(500,400,128,31, 'platforme');
 
-	// platforms = this.physics.add.staticGroup();
-	// platforms.create(0, 400, 'sol').setScale(2).refreshBody();
+	platforms = this.physics.add.staticGroup();
+	// platforms.add.tileSprite(400,100,400,80, 'platforme');
 
     // platforms.create(200, 31, 'platforme');
         // platforms.create(50, 250, 'ground');
