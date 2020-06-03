@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 800	,
     height: 600,
     // margin: 0,
     physics: {
@@ -17,8 +17,10 @@ var config = {
     }
 };
 
-
+//Déclaration de mes différentes variable du jeu
 var platforms;
+var player;
+var sol;
 
 var game = new Phaser.Game(config);
 
@@ -28,30 +30,41 @@ function preload ()
 	this.load.image('sky', 'images/paysage.png');
 	this.load.image('sol', 'images/sol.png');
 	this.load.image('platforme', 'images/plateform.png');
+	this.load.spritesheet('ninja', 'images/perso.png', {
+		frameWidth: 47, frameHeight: 59});
 }
 
-var platforms;
 
 function create ()
 {
-	this.add.image(0, 0, 'sky').setOrigin(0, 0);
-
-	/*Duplique l'image sol grace a tileSprite(Longueur/2 canvas, déplacement en Y, width canvas en X si < 800 image + petite, déplacement en Y)*/
-	this.add.tileSprite(400,600,800,150, 'sol');
+	//Partie Background(ciel + plateformes)
+	this.add.image(0, 0, 'sky').setOrigin(0, 0); //Mise en place du sky
+	
 	/*Duplique l'image sol grace a tileSprite(déplacement en X, déplacement en Y,  longueur image réel, hauteur image réel)*/
-	// this.add.tileSprite(500,400,128,31, 'platforme');
+	sol = this.add.tileSprite(400,600,800,150, 'sol');
+	this.physics.add.existing (sol, true);
+
+
 
 	platforms = this.physics.add.staticGroup();
-	// platforms.create(400, 900, 'sol').setScale(6.25).refreshBody();
-
     platforms.create(600, 250, 'platforme');
     platforms.create(400, 400, 'platforme');
-        // platforms.create(50, 250, 'ground');
-        // platforms.create(750, 220, 'ground');
+    //Partie animation du personnage
+    player = this.physics.add.sprite(100, 100, 'ninja');	
+    
 
-	// this.add.image(100, 600, 'sol');
-	
-	// platforms.create(400, 600, 'sol').setScale(2).refreshBody();
+ //    this.anims.create({
+	//     key: 'right',
+	//     frames: this.anims.generateFrameNumbers('ninja', { start: 0, end: 8 }),
+	//     frameRate: 9,
+	//     repeat: -1
+	// });
+
+    this.physics.add.collider(player, platforms);
+    this.physics.add.collider(player, sol);
+
+    // platforms.physics.add.existing(sol);
+
 }
 
 function update ()
