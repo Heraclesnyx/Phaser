@@ -44,7 +44,8 @@ function create ()
 	platforms = this.physics.add.staticGroup();
 	// platforms.create(400, 900, 'sol').setScale(6.25).refreshBody();
 
-    platforms.create(600, 400, 'platforme');
+    platforms.create(600, 250, 'platforme');
+    platforms.create(400, 400, 'platforme');
         // platforms.create(50, 250, 'ground');
         // platforms.create(750, 220, 'ground');
 
