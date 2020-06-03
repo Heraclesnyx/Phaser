@@ -39,12 +39,12 @@ function create ()
 	/*Duplique l'image sol grace a tileSprite(Longueur/2 canvas, déplacement en Y, width canvas en X si < 800 image + petite, déplacement en Y)*/
 	this.add.tileSprite(400,600,800,150, 'sol');
 	/*Duplique l'image sol grace a tileSprite(déplacement en X, déplacement en Y,  longueur image réel, hauteur image réel)*/
-	this.add.tileSprite(500,400,128,31, 'platforme');
+	// this.add.tileSprite(500,400,128,31, 'platforme');
 
 	platforms = this.physics.add.staticGroup();
-	// platforms.add.tileSprite(400,100,400,80, 'platforme');
+	// platforms.create(400, 900, 'sol').setScale(6.25).refreshBody();
 
-    // platforms.create(200, 31, 'platforme');
+    platforms.create(600, 400, 'platforme');
         // platforms.create(50, 250, 'ground');
         // platforms.create(750, 220, 'ground');
 
