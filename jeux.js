@@ -59,7 +59,21 @@ function create ()
 	//Placement du pangolin
 	this.add.image(30, 488, 'pangolin');
 
-	//Animer le sol
+	//Animer le sol:
+
+
+	// this.anims.create({
+ //        key: 'snooze',
+ //        frames: [
+ //            { key: 'sky' },
+ //            { key: 'sol', duration: 10 },
+ //            { key: 'ninja' }
+ //        ],
+ //        frameRate: 24,
+ //        repeat: -1
+ //    });
+ //    this.add.sprite(400, 600, 'sol').play('snooze');
+
 
 
 	//Création d'un groupe statique pour les obstacles
@@ -83,7 +97,7 @@ function create ()
 
     cursors = this.input.keyboard.createCursorKeys();
 
-     //Camera sur joueur:
+     //Camera sur joueur (camera fixed dans phaser):
     
      // var camControl = new Phaser.Cameras.Controls.FixedKeyControl({
      // 	camera: this.cameras.main,
@@ -100,8 +114,15 @@ function create ()
 
 function update ()
 {
+	//Modification du sol qui bouge
+	platforms.tilePositionX += 0.5;
+	// this.moveSol(this.sol, 1);
+
 	if(cursors.right.isDown){
-		player.setVelocityX(160);
-		player.anims.play('right', true);
+		// player.setVelocityX(160);
+		// player.anims.play('right', true);
+		// sol.tilePositionX -= 0.5;
+		sol.tilePositionX += 600;
+		// platforms.tilePositionX -= 0.5;
 	}
 }
