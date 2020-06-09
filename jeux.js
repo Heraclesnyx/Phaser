@@ -21,6 +21,7 @@ var config = {
 var platforms;
 var player;
 var sol;
+var cursors;
 
 var game = new Phaser.Game(config);
 
@@ -63,12 +64,20 @@ function create ()
     player = this.physics.add.sprite(100, 100, 'ninja');	
     
 
+    //Camera sur joueur:
+
+    // player = this.add.sprite(400, 300, 'ninja');
+	// this.cameras.main.startFollow(player);
+   
+
     this.anims.create({
 	    key: 'right',
 	    frames: this.anims.generateFrameNumbers('ninja', { start: 0, end: 8 }),
 	    frameRate: 9,
 	    repeat: -1
 	});
+
+    cursors = this.input.keyboard.createCursorKeys();
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(player, sol);
@@ -77,4 +86,8 @@ function create ()
 
 function update ()
 {
+	if(cursors.right.isDown){
+		player.setVelocityX(160);
+		player.anims.play('right', true);
+	}
 }
