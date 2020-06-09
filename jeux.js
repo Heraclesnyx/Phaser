@@ -22,6 +22,8 @@ var platforms;
 var player;
 var sol;
 var cursors;
+var cam;
+// var config;
 
 var game = new Phaser.Game(config);
 
@@ -44,6 +46,9 @@ function preload ()
 
 function create ()
 {
+
+	
+   
 	//Partie Background(ciel + plateformes)
 	this.add.image(0, 0, 'sky').setOrigin(0, 0); //Mise en place du sky
 	
@@ -54,20 +59,19 @@ function create ()
 	//Placement du pangolin
 	this.add.image(30, 488, 'pangolin');
 
+	//Animer le sol
 
 
+	//Création d'un groupe statique pour les obstacles
 	platforms = this.physics.add.staticGroup();
-    platforms.create(600, 250, 'platforme');
+    // platforms.create(600, 250, 'platforme');
     platforms.create(400, 400, 'platforme');
     platforms.create(570, 488,'caisse');
     //Partie animation du personnage
     player = this.physics.add.sprite(100, 100, 'ninja');	
     
 
-    //Camera sur joueur:
-
-    // player = this.add.sprite(400, 300, 'ninja');
-	// this.cameras.main.startFollow(player);
+   
    
 
     this.anims.create({
@@ -78,6 +82,16 @@ function create ()
 	});
 
     cursors = this.input.keyboard.createCursorKeys();
+
+     //Camera sur joueur:
+    
+     // var camControl = new Phaser.Cameras.Controls.FixedKeyControl({
+     // 	camera: this.cameras.main,
+     // 	left: cursors.left,
+     // 	right: cursors.right,
+     // 	speed: {x: 0, y:0}
+     // });
+    // controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(player, sol);
